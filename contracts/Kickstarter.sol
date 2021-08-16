@@ -11,11 +11,13 @@ contract Kickstarter {
     }
 
     address public manager;
-    uint public minimumContribution;
+    uint256 public minimumContribution;
     address[] public approvers;
 
-constructor() {
+
+constructor(uint256 minimum) {
     manager = msg.sender;
+    minimumContribution = minimum;
 }
 
 modifier managerUser() {
@@ -23,12 +25,12 @@ modifier managerUser() {
     _;
 }
 
-function setMinimum(uint memory minimum) public {
+function setMinimum(uint minimum) public {
     minimumContribution = minimum;
 }
 
 function contribute(uint) public payable {
-    require(msg.value > minimumContribution, '402: contribution is too low (min. 0.1)');
+    require(msg.value >= minimumContribution, 'You need to contribute the minimum');
     approvers.push(msg.sender);
 }
 

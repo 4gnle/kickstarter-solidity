@@ -1,0 +1,31 @@
+{
+  "name": "kickstarter",
+  "version": "1.0.0",
+  "description": "Kickstarter with ETH",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm run test",
+    "kickstarter": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angeljgomezc/kickstarter-crypto.git"
+  },
+  "keywords": [
+    "kickstarter",
+    "crypto"
+  ],
+  "author": "Angel Gomez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/angeljgomezc/kickstarter-crypto/issues"
+  },
+  "homepage": "https://github.com/angeljgomezc/kickstarter-crypto#readme",
+  "dependencies": {
+    "concurrently": "^6.2.1",
+    "cross-env": "^7.0.3"
+  }
+}

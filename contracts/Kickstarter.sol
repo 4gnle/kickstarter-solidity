@@ -13,7 +13,7 @@ contract Kickstarter {
     address public manager;
     uint256 public minimumContribution;
     address[] public approvers;
-
+    Request[] public requests;
 
 constructor(uint256 minimum) {
     manager = msg.sender;
@@ -37,5 +37,13 @@ function contribute(uint) public payable {
 function getApprovers() public view returns(address[] memory) {
     return approvers;
 }
+
+function createRequest(string storage description, uint value, address payable recipient) public managerUser {
+  Request memory newRequest = Request({
+    description: description,
+    value: value,
+    recipient: recipient,
+    completele: false
+  })
 
 }

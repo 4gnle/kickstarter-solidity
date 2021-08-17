@@ -2,7 +2,7 @@
   "name": "kickstarter",
   "version": "1.0.0",
   "description": "Kickstarter with ETH",
-  "main": "index.js",
+  "main": "server.js",
   "directories": {
     "test": "test"
   },

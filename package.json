@@ -7,9 +7,11 @@
     "test": "test"
   },
   "scripts": {
-    "test": "npm run test",
-    "kickstarter": "concurrently \"npm run server\" \"npm run client\""
-  },
+    "test": "mocha",
+    "kickstarter": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm start --prefix client"  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angeljgomezc/kickstarter-crypto.git"
@@ -26,6 +28,8 @@
   "homepage": "https://github.com/angeljgomezc/kickstarter-crypto#readme",
   "dependencies": {
     "concurrently": "^6.2.1",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.12"
   }
 }

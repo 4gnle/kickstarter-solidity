@@ -6,14 +6,18 @@ contract Kickstarter {
     struct Request {
       string description;
       uint value;
-      address recipient;
+      address payable recipient;
       bool complete;
+      uint approvalCount;
+      mapping(address => bool) approvals;
     }
 
     address public manager;
     uint256 public minimumContribution;
-    address[] public approvers;
-    Request[] public requests;
+    mapping(address => bool) public approvers;
+    mapping(uint256 => Request) public requests;
+    uint256 numRequests;
+    uint256 approversCount;
 
 constructor(uint256 minimum) {
     manager = msg.sender;
@@ -29,21 +33,38 @@ function setMinimum(uint minimum) public {
     minimumContribution = minimum;
 }
 
-function contribute(uint) public payable {
+function contribute() public payable {
     require(msg.value >= minimumContribution, 'You need to contribute the minimum');
-    approvers.push(msg.sender);
+    approvers[msg.sender] = true;
+    approversCount++;
 }
 
-function getApprovers() public view returns(address[] memory) {
-    return approvers;
+function createRequest(string memory description, uint256 value, address payable recipient
+) public managerUser {
+    Request storage r = requests[numRequests++];
+    r.description = description;
+    r.value = value;
+    r.recipient = recipient;
+    r.complete = false;
+    r.approvalCount = 0;
 }
 
-function createRequest(string storage description, uint value, address payable recipient) public managerUser {
-  Request memory newRequest = Request({
-    description: description,
-    value: value,
-    recipient: recipient,
-    completele: false
-  })
+function approveRequest(uint256 index) public {
+  Request storage request = requests[index];
 
+  require(approvers[msg.sender]);
+  require(!request.approvals[msg.sender]);
+
+  request.approvals[msg.sender] = true;
+  request.approvalCount++;
+}
+
+function finalizeRequest(uint index) public managerUser {
+  Request storage request = requests[index];
+  require(request.approvalCount > (approversCount / 2));
+  require(!request.complete);
+
+  request.recipient.transfer(request.value);
+  request.complete = true;
+}
 }

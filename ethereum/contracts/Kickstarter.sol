@@ -3,6 +3,19 @@
 pragma solidity >=0.7.0 <0.9.0;
 
 contract Kickstarter {
+  Campaigns[] public deployedCampaigns;
+
+  function createCampaign(uint256 minimum) public {
+    Campaigns newCampaign = new Campaigns(minimum, msg.sender);
+    deployedCampaigns.push(newCampaign);
+  }
+
+  function getDeployedCampaigns() public view returns(Campaigns[] memory){
+    return deployedCampaigns;
+  }
+}
+
+contract Campaigns {
     struct Request {
       string description;
       uint value;
@@ -19,8 +32,8 @@ contract Kickstarter {
     uint256 numRequests;
     uint256 approversCount;
 
-constructor(uint256 minimum) {
-    manager = msg.sender;
+constructor(uint256 minimum, address creator) {
+    manager = creator;
     minimumContribution = minimum;
 }
 
@@ -61,6 +74,7 @@ function approveRequest(uint256 index) public {
 
 function finalizeRequest(uint index) public managerUser {
   Request storage request = requests[index];
+
   require(request.approvalCount > (approversCount / 2));
   require(!request.complete);
 

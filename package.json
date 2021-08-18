@@ -11,7 +11,8 @@
     "kickstarter": "concurrently \"npm run server\" \"npm run client\"",
     "start": "node server",
     "server": "nodemon server",
-    "client": "npm start --prefix client"  },
+    "client": "npm start --prefix client"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angeljgomezc/kickstarter-crypto.git"
@@ -27,9 +28,16 @@
   },
   "homepage": "https://github.com/angeljgomezc/kickstarter-crypto#readme",
   "dependencies": {
+    "@truffle/hdwallet-provider": "^1.4.3",
+    "assert": "^2.0.0",
     "concurrently": "^6.2.1",
     "cross-env": "^7.0.3",
     "express": "^4.17.1",
-    "nodemon": "^2.0.12"
+    "fs-extra": "^10.0.0",
+    "ganache-cli": "^6.12.2",
+    "mocha": "^9.0.3",
+    "nodemon": "^2.0.12",
+    "solc": "^0.8.7-fixed",
+    "web3": "^1.5.2"
   }
 }

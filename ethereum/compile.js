@@ -38,14 +38,10 @@ for (let contract in contracts) {
 
   fs.writeFileSync(
     path.resolve(buildFolder, `${contract}.json`),
-    JSON.stringify(contract1.abi, null, 2),
+    JSON.stringify(contract1, null, 2),
     "utf8"
   );
 }
-
-
-
-
 
 // // exporting the ABI interface from the contract
 // module.exports.abi = output.contracts.abi

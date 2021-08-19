@@ -37,38 +37,38 @@ beforeEach( async () => {
 });
 
 describe('campaigns', function() {
-  // it('deploys a kickstart and campaign', async function() {
-  //   await assert.ok(kickstart.options.address);
-  //   await assert.ok(campaign.options.address);
-  // })
-  //
-  // it('check the manager', async function() {
-  //   const manager = await campaign.methods.manager().call();
-  //   assert.equal(accounts[0], manager);
-  // })
-  //
-  // it('checking if accounts can contribute', async function() {
-  //   const checkMinimum = await campaign.methods.minimumContribution().call();
-  //
-  //   await campaign.methods.contribute().send({value: '1000', from: accounts[1]})
-  //
-  //   const contributor = await campaign.methods.approvers(accounts[1]).call();
-  //   console.log(contributor)
-  // })
-  //
-  // it('check for request creation', async function() {
-  //   await campaign.methods
-  //   .createRequest(
-  //     'checking', '1000', accounts[1]
-  //   )
-  //   .send({
-  //     from: accounts[0],
-  //     gas: '10000000'
-  //   })
-  //
-  //   const requests = await campaign.methods.requests(0).call();
-  //   console.log(requests);
-  // })
+  it('deploys a kickstart and campaign', async function() {
+    await assert.ok(kickstart.options.address);
+    await assert.ok(campaign.options.address);
+  })
+
+  it('check the manager', async function() {
+    const manager = await campaign.methods.manager().call();
+    assert.equal(accounts[0], manager);
+  })
+
+  it('checking if accounts can contribute', async function() {
+    const checkMinimum = await campaign.methods.minimumContribution().call();
+
+    await campaign.methods.contribute().send({value: '1000', from: accounts[1]})
+
+    const contributor = await campaign.methods.approvers(accounts[1]).call();
+    console.log(contributor)
+  })
+
+  it('check for request creation', async function() {
+    await campaign.methods
+    .createRequest(
+      'checking', '1000', accounts[1]
+    )
+    .send({
+      from: accounts[0],
+      gas: '10000000'
+    })
+
+    const requests = await campaign.methods.requests(0).call();
+    console.log(requests);
+  })
 
   it('approve and finalize a request', async function() {
 

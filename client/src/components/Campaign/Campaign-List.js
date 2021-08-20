@@ -2,6 +2,9 @@ import React from 'react'
 
 import './Campaign-List.css'
 
+import kickstarter from '../../ethereum/kickstarter'
+import web3 from '../../ethereum/web3'
+
 const CampaignList = () => {
   return (
     <div className='campaign-list'>

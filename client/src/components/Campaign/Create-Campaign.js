@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
 
+//CSS and UI
 import './Create-Campaign.css'
-
+import Button from '../UI/Button'
+//ETH
 import kickstarter from '../../ethereum/kickstarter'
 import web3 from '../../ethereum/web3'
 
@@ -58,10 +60,10 @@ const CreateCampaign = () => {
         <br></br>
         <br></br>
 
-        <button
+        <Button
          type='submit'>
          Create Campaign
-        </button>
+        </Button>
       </form>
     </div>
   )

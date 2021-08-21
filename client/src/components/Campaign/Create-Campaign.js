@@ -10,9 +10,7 @@ import web3 from '../../ethereum/web3'
 const CreateCampaign = () => {
 
   const [campaignData, setCampaignData] = useState({
-    description: '',
-    value: '',
-    address: ''
+    value: ''
   });
 
   const {description, value, address} = campaignData;
@@ -59,24 +57,3 @@ const CreateCampaign = () => {
 }
 
 export default CreateCampaign
-
-
-// </input>
-// <h3>Address</h3>
-// <input
-//   name='address'
-//   placeholder='Paste the wallet address'
-//   value={address}
-//   onChange={e => onChange(e)}
-// >
-//
-//
-// <h3> Description</h3>
-// <input
-// name='description'
-// value={description}
-// placeholder='Name of your campaign'
-// onChange={e => onChange(e)}
-// >
-//
-// </input>

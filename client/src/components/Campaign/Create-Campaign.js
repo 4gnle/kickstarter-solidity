@@ -17,9 +17,14 @@ const CreateCampaign = () => {
 
   const {description, value, address} = campaignData;
 
-  const sendCampaignData = (e) => {
+  const sendCampaignData = async (e) => {
     e.preventDefault()
-    console.log(campaignData)
+
+    const ethValue = web3.utils.toWei(value, 'ether');
+
+    const currentAccount = await web3.eth.currentProvider.selectedAddress;
+
+    await kickstarter.methods.createCampaign(ethValue).send({from: currentAccount, gas: '1000000'})
   }
 
   const onChange = (e) => {
@@ -30,38 +35,22 @@ const CreateCampaign = () => {
     <div className='create-campaign'>
       <h1> Create a New Campaign</h1>
       <form onSubmit={e => sendCampaignData(e)}>
-        <h3> Description</h3>
-        <input
-        name='description'
-        value={description}
-        onChange={e => onChange(e)}
-        >
-
-        </input>
 
         <h3>Value</h3>
         <input
           name='value'
           value={value}
           type='number'
+          placeholder='Set minmum value in ETH'
           onChange={e => onChange(e)}
         >
-
-        </input>
-        <h3>Address</h3>
-        <input
-          name='address'
-          placeholder='Paste your wallet address'
-          value={address}
-          onChange={e => onChange(e)}
-        >
-
         </input>
         <br></br>
         <br></br>
 
         <Button
-         type='submit'>
+         type='submit'
+         className='button primary'>
          Create Campaign
         </Button>
       </form>
@@ -70,3 +59,24 @@ const CreateCampaign = () => {
 }
 
 export default CreateCampaign
+
+
+// </input>
+// <h3>Address</h3>
+// <input
+//   name='address'
+//   placeholder='Paste the wallet address'
+//   value={address}
+//   onChange={e => onChange(e)}
+// >
+//
+//
+// <h3> Description</h3>
+// <input
+// name='description'
+// value={description}
+// placeholder='Name of your campaign'
+// onChange={e => onChange(e)}
+// >
+//
+// </input>

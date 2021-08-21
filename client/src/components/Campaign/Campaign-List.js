@@ -25,7 +25,7 @@ const CampaignList = () => {
     <div className='campaign-list'>
       <h1>Available Campaigns</h1>
       <div className='cl-addresses'>
-        <p>{campaign}</p>
+        <p>0x4010fA7c6115426571b5d15266aC3f30632207d9</p>
       </div>
     </div>
   )

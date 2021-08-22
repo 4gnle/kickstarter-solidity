@@ -17,7 +17,6 @@ const CampaignList = () => {
     }
   getCampaigns();
   };
-    console.log(campaign);
   })
 
   return (
@@ -27,6 +26,7 @@ const CampaignList = () => {
         {campaign && campaign.map(camp => (
           <>
         <p>{camp}</p>
+        <a><i></i></a>
           </>
         ))}
       </div>

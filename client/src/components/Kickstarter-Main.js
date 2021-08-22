@@ -1,5 +1,7 @@
 import React from 'react'
 
+//Redux and router
+
 import './Kickstarter-Main.css'
 import CampaignList from './Campaign/Campaign-List'
 import CreateCampaign from './Campaign/Create-Campaign'

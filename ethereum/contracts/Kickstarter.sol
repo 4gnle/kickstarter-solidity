@@ -81,4 +81,14 @@ function finalizeRequest(uint index) public managerUser {
   request.recipient.transfer(request.value);
   request.complete = true;
 }
+
+function summary() public view returns(uint, uint, uint, uint, address memory) {
+  return (
+    requests,
+    minimumContribution,
+    numRequests,
+    approversCount,
+    manager
+  )
+}
 }

@@ -4,6 +4,9 @@ import React, {useEffect, useState} from 'react'
 import './Campaign-Page.css'
 import Button from '../UI/Button'
 
+//Router and Redux
+import {Link} from 'react-router-dom';
+
 //ETH
 import campaign from '../../ethereum/campaign'
 import web3 from '../../ethereum/web3'
@@ -32,10 +35,14 @@ const CampaignPage = ({match}) => {
     }
   }, [address, campaignSummary, match.params.camp]);
 
+  const editCampaign = () => {
+
+  }
+
   return (
     <div className='campaign-page'>
       <h1>Campaign Address:</h1>
-      {address}
+      <h2 style={{fontWeight: 'lighter'}}>{address}</h2>
       <div className='cp-grid unique'>
         <h3>Manager</h3>
         <p>{campaignSummary && campaignSummary[4]}</p>
@@ -55,7 +62,7 @@ const CampaignPage = ({match}) => {
         </div>
       </div>
 
-      <Button>Edit Campaign</Button>
+      <Link to={`/campaign/request/${address}`}><Button>Edit Campaign</Button></Link>
     </div>
   )
 }

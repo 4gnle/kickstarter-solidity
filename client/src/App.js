@@ -5,6 +5,7 @@ import './App.css';
 //Components
 import KickstarterMain from './components/Kickstarter-Main'
 import CampaignPage from './components/Campaign/Campaign-Page'
+import AddRequest from './components/Campaign/AddRequest'
 
 //Router
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
@@ -18,6 +19,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={KickstarterMain}/>
           <Route exact path='/campaign/:camp' component={CampaignPage} />
+          <Route exact path='/campaign/request/:address' component={AddRequest} />
         </Switch>
       </div>
     </div>

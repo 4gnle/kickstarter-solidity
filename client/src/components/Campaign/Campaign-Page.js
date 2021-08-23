@@ -36,19 +36,26 @@ const CampaignPage = ({match}) => {
     <div className='campaign-page'>
       <h1>Campaign Address:</h1>
       {address}
-      <div className='cp-boxes'>
-      <h3>Manager</h3>
-      <p>{campaignSummary && campaignSummary[4]}</p>
-
-      <h3># of Approvers</h3>
-      <p>{campaignSummary && campaignSummary[3]} approvers</p>
-
-      <h3>Total Balance</h3>
-      <p>{campaignSummary && web3.utils.fromWei(campaignSummary[0], 'ether')} ETH</p>
-
-      <h3>Minimum Contribution</h3>
-      <p>{campaignSummary && web3.utils.fromWei(campaignSummary[1], 'ether')} ETH</p>
+      <div className='cp-grid unique'>
+        <h3>Manager</h3>
+        <p>{campaignSummary && campaignSummary[4]}</p>
       </div>
+      <div className='cp-boxes'>
+        <div className='cp-grid'>
+          <h3># of Approvers</h3>
+          <p>{campaignSummary && campaignSummary[3]} approvers</p>
+        </div>
+        <div className='cp-grid'>
+          <h3>Minimum Contribution</h3>
+          <p>{campaignSummary && web3.utils.fromWei(campaignSummary[1], 'ether')} ETH</p>
+          </div>
+        <div className='cp-grid'>
+          <h3>Total Balance</h3>
+          <p>{campaignSummary && web3.utils.fromWei(campaignSummary[0], 'ether')} ETH</p>
+        </div>
+      </div>
+
+      <Button>Edit Campaign</Button>
     </div>
   )
 }

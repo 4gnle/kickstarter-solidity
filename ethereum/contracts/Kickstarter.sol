@@ -82,13 +82,17 @@ function finalizeRequest(uint index) public managerUser {
   request.complete = true;
 }
 
-function summary() public view returns(uint, uint, uint, uint, address memory) {
+function summary() public view returns(uint, uint, uint, uint, address) {
   return (
-    requests,
+    address(this).balance,
     minimumContribution,
     numRequests,
     approversCount,
     manager
-  )
+  );
+}
+
+function requestsLength() public view returns(uint) {
+  return numRequests;
 }
 }

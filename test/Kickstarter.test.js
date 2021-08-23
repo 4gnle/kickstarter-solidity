@@ -100,4 +100,12 @@ describe('campaigns', function() {
     const requests = await campaign.methods.requests(0).call();
     console.log(requests);
   })
+
+  it('checking summary and requestsLength', async function() {
+    const projects = await campaign.methods.summary().call();
+    console.log(projects)
+
+    const requestsA = await campaign.methods.requestsLength().call();
+    console.log(requestsA);
+  })
 })

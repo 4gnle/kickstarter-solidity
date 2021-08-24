@@ -33,7 +33,7 @@ const CreateCampaign = () => {
     <div className='create-campaign'>
       <h1> Create a New Campaign</h1>
       <form onSubmit={e => sendCampaignData(e)}>
-
+        <br></br>
         <h3>Value</h3>
         <input
           name='value'
@@ -44,8 +44,6 @@ const CreateCampaign = () => {
         >
         </input>
         <br></br>
-        <br></br>
-
         <Button
          type='submit'
          className='button primary'>

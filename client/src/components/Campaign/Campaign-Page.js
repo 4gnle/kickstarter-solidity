@@ -11,10 +11,15 @@ import {Link} from 'react-router-dom';
 import campaign from '../../ethereum/campaign'
 import web3 from '../../ethereum/web3'
 
+//Components
+import ContributeWindow from './ContributePage'
+
 const CampaignPage = ({match}) => {
 
   const [campaignSummary, setCampaignSummary] = useState();
   const [address, setCampaignAddress] = useState();
+  const [contributionInput, setContributionInput] = useState(false);
+  const [campaign1, setCampaign1] = useState();
 
   useEffect(() => {
     if (!address) {
@@ -24,28 +29,40 @@ const CampaignPage = ({match}) => {
       getAddress();
     }
 
-    const campaign1 = campaign(address);
+    const campaignT = campaign(address);
+    setCampaign1(campaignT);
+
+    console.log(campaign1);
 
     if (address && !campaignSummary) {
       const getSummary = async () => {
-        const summary = await campaign1.methods.summary().call();
+        const summary = await campaignT.methods.summary().call();
         await setCampaignSummary(summary);
       }
       getSummary();
     }
   }, [address, campaignSummary, match.params.camp]);
 
-  const editCampaign = () => {
-
+  const addContribution = () => {
+    setContributionInput(true);
   }
 
   return (
     <div className='campaign-page'>
+      {contributionInput &&
+        <ContributeWindow minimumContribution={campaignSummary[1]}
+        campaign1={campaign1}
+        />}
+
       <h1>Campaign Address:</h1>
       <h2 style={{fontWeight: 'lighter'}}>{address}</h2>
       <div className='cp-grid unique'>
         <h3>Manager</h3>
         <p>{campaignSummary && campaignSummary[4]}</p>
+      </div>
+      <div className='cp-grid'>
+        <h3>Number of requests so far</h3>
+        <p>{campaignSummary && campaignSummary[2]}</p>
       </div>
       <div className='cp-boxes'>
         <div className='cp-grid'>
@@ -62,7 +79,9 @@ const CampaignPage = ({match}) => {
         </div>
       </div>
 
-      <Link to={`/campaign/request/${address}`}><Button>Edit Campaign</Button></Link>
+      <Link to={`/campaign/request/${address}`}><Button>Add Request</Button></Link>
+
+      <Button onClick={addContribution}>Contribute</Button>
     </div>
   )
 }

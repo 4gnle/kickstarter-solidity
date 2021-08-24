@@ -13,6 +13,20 @@
   }
 }
 
+input {
+  display: block;
+  text-align: center;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 50%;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

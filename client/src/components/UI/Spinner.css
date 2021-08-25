@@ -1,0 +1,21 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.spinner {
+  display: block;
+  text-align: center;
+  top: 25vh;
+  left: 25vw;
+  position: fixed;
+  margin: 3rem 5rem;
+  padding: 3rem;
+  z-index: 100;
+  overflow: hidden;
+}

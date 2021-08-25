@@ -20,6 +20,14 @@
   margin-top: 15px;
 }
 
+.cp-boxes1 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 5em;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .cp-grid p {
   font-size: 1.5vh;
 }

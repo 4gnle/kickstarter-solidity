@@ -1,0 +1,21 @@
+.requests-page {
+  box-sizing: border-box;
+  border-radius: 18px;
+  border: 1px solid gray;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;
+  padding: 5px;
+  background-color: #24292E;
+  box-shadow: 0 2px 12px white;
+}
+
+.rp-boxes {
+  display: grid;
+  grid-template-columns: repeat(3, 3fr);
+  grid-auto-rows: 5em;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 15px;
+}

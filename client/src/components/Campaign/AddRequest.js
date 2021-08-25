@@ -45,10 +45,6 @@ const AddRequest = ({match}) => {
     }
   },[address, match.params.address])
 
-  useEffect(() => {
-
-  })
-
   const onChange = (e) => setRequestData({...requestData, [e.target.name]: e.target.value})
 
   const sendRequest = async (e) => {

@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react'
 //CSS and UI
 import './Campaign-Page.css'
 import Button from '../UI/Button'
-
+import Spinner from '../UI/Spinner'
 //Router and Redux
 import {Link} from 'react-router-dom';
 
@@ -20,6 +20,7 @@ const CampaignPage = ({match}) => {
   const [address, setCampaignAddress] = useState();
   const [contributionInput, setContributionInput] = useState(false);
   const [campaign1, setCampaign1] = useState();
+  const [spinner, setSpinner] = useState(false);
 
   useEffect(() => {
     if (!address) {
@@ -44,7 +45,8 @@ const CampaignPage = ({match}) => {
   }, [address, campaignSummary, match.params.camp]);
 
   const addContribution = () => {
-    setContributionInput(true);
+    // setContributionInput(true);
+    setSpinner(true);
   }
 
   const cancelContribution = () => {
@@ -59,15 +61,20 @@ const CampaignPage = ({match}) => {
         cancelContribution={cancelContribution}
         />}
 
+      {spinner &&
+        <Spinner/>}
+
       <h1>Campaign Address:</h1>
       <h2 style={{fontWeight: 'lighter'}}>{address}</h2>
-      <div className='cp-grid unique'>
-        <h3>Manager</h3>
-        <p>{campaignSummary && campaignSummary[4]}</p>
-      </div>
-      <div className='cp-grid'>
-        <h3>Number of requests so far</h3>
-        <p>{campaignSummary && campaignSummary[2]}</p>
+      <div className='cp-boxes1'>
+        <div className='cp-grid'>
+          <h3>Manager</h3>
+          <p>{campaignSummary && campaignSummary[4]}</p>
+        </div>
+        <div className='cp-grid'>
+          <h3>Number of requests so far</h3>
+          <p>{campaignSummary && campaignSummary[2]}</p>
+        </div>
       </div>
       <div className='cp-boxes'>
         <div className='cp-grid'>
@@ -84,7 +91,7 @@ const CampaignPage = ({match}) => {
         </div>
       </div>
 
-      <Link to={`/campaign/request/${address}`}><Button>Add Request</Button></Link>
+      <Link to={`/campaign/${address}/requests`}><Button>See Requests</Button></Link>
 
       <Button onClick={addContribution}>Contribute</Button>
     </div>

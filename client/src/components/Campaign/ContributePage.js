@@ -11,7 +11,7 @@ import {Link} from 'react-router-dom';
 import campaign from '../../ethereum/campaign'
 import web3 from '../../ethereum/web3'
 
-const ContributeWindow = ({match, minimumContribution, campaign1, cancelContribution}) => {
+const ContributeWindow = ({match, minimumContribution, campaign1, cancelContribution, setSpinnerFalse}) => {
 
   const [value, setValue] = useState();
 
@@ -27,16 +27,24 @@ const ContributeWindow = ({match, minimumContribution, campaign1, cancelContribu
     let changedValue;
     changedValue = web3.utils.toWei(value, 'ether')
 
-    console.log(campaign1);
-    await campaign1.methods.contribute().send({
-      value: changedValue,
-      from: account,
-      gas: '1000000'
-    })
+    if(changedValue >= minimumContribution) {
+      cancelContribution();
+
+      await campaign1.methods.contribute().send({
+        value: changedValue,
+        from: account,
+        gas: '1000000'
+      })
+
+        setSpinnerFalse();
+    } else {
+      console.log('Wrong amount')
+    }
   }
 
   const goBack = () => {
     cancelContribution();
+    setSpinnerFalse();
   }
 
   return (
@@ -56,7 +64,7 @@ const ContributeWindow = ({match, minimumContribution, campaign1, cancelContribu
       <Button
         onClick={e => contributeEth(e)}
         className="button primary small"
-      >Send Contribution</Button>
+      >Send</Button>
       <Button
         onClick={goBack}
         className='button danger small'>

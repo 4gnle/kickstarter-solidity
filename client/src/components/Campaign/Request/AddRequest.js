@@ -2,11 +2,11 @@ import React, {useState, useEffect} from 'react'
 
 //CSS and UI
 import './AddRequest.css'
-import Button from '../UI/Button'
+import Button from '../../UI/Button'
 
 //ether
-import campaign from '../../ethereum/campaign'
-import web3 from '../../ethereum/web3'
+import campaign from '../../../ethereum/campaign'
+import web3 from '../../../ethereum/web3'
 
 const requestInitial = {
   description: '',

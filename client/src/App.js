@@ -5,9 +5,9 @@ import './App.css';
 //Components
 import KickstarterMain from './components/Kickstarter-Main'
 import CampaignPage from './components/Campaign/Campaign-Page'
-import AddRequest from './components/Campaign/AddRequest'
+import AddRequest from './components/Campaign/Request/AddRequest'
 import Navbar from './components/UI/Navbar'
-import RequestsPage from './components/Campaign/RequestsPage';
+import RequestsPage from './components/Campaign/Request/RequestsPage';
 
 //Router
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';

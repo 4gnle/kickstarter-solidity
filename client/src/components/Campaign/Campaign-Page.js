@@ -12,7 +12,7 @@ import campaign from '../../ethereum/campaign'
 import web3 from '../../ethereum/web3'
 
 //Components
-import ContributeWindow from './ContributePage'
+import ContributeWindow from './ContributePage';
 
 const CampaignPage = ({match}) => {
 
@@ -21,6 +21,12 @@ const CampaignPage = ({match}) => {
   const [contributionInput, setContributionInput] = useState(false);
   const [campaign1, setCampaign1] = useState();
   const [spinner, setSpinner] = useState(false);
+
+  const [minimumContribution, setMinimumContribution] = useState();
+  const [manager, setManager] = useState();
+  const [approvers, setApprovers] = useState();
+  const [requests, setRequests] = useState();
+  const [balance, setBalance] = useState();
 
   useEffect(() => {
     if (!address) {
@@ -42,23 +48,38 @@ const CampaignPage = ({match}) => {
       }
       getSummary();
     }
+
+    if(campaignSummary) {
+      setMinimumContribution(web3.utils.fromWei(campaignSummary[1], 'ether'));
+      setManager(campaignSummary[4])
+      setApprovers(campaignSummary[3]);
+      setBalance(web3.utils.fromWei(campaignSummary[0], 'ether'))
+      setRequests(campaignSummary[2]);
+    }
+
   }, [address, campaignSummary, match.params.camp]);
 
+
+
   const addContribution = () => {
-    // setContributionInput(true);
-    setSpinner(true);
+    setContributionInput(true);
   }
 
   const cancelContribution = () => {
     setContributionInput(false);
   }
 
+  const setSpinnerFalse = () => {
+    setSpinner(false);
+  }
+
   return (
     <div className='campaign-page'>
       {contributionInput &&
-        <ContributeWindow minimumContribution={campaignSummary[1]}
+        <ContributeWindow minimumContribution={minimumContribution}
         campaign1={campaign1}
         cancelContribution={cancelContribution}
+        setSpinnerFalse={setSpinnerFalse}
         />}
 
       {spinner &&
@@ -69,25 +90,25 @@ const CampaignPage = ({match}) => {
       <div className='cp-boxes1'>
         <div className='cp-grid'>
           <h3>Manager</h3>
-          <p>{campaignSummary && campaignSummary[4]}</p>
+          <p>{campaignSummary && manager}</p>
         </div>
         <div className='cp-grid'>
           <h3>Number of requests so far</h3>
-          <p>{campaignSummary && campaignSummary[2]}</p>
+          <p>{campaignSummary && requests}</p>
         </div>
       </div>
       <div className='cp-boxes'>
         <div className='cp-grid'>
           <h3># of Approvers</h3>
-          <p>{campaignSummary && campaignSummary[3]} approvers</p>
+          <p>{campaignSummary && approvers} approvers</p>
         </div>
         <div className='cp-grid'>
           <h3>Minimum Contribution</h3>
-          <p>{campaignSummary && web3.utils.fromWei(campaignSummary[1], 'ether')} ETH</p>
+          <p>{campaignSummary && minimumContribution} ETH</p>
           </div>
         <div className='cp-grid'>
           <h3>Total Balance</h3>
-          <p>{campaignSummary && web3.utils.fromWei(campaignSummary[0], 'ether')} ETH</p>
+          <p>{campaignSummary && balance} ETH</p>
         </div>
       </div>
 

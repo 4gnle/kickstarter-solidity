@@ -11,7 +11,7 @@ import {Link} from 'react-router-dom';
 import campaign from '../../ethereum/campaign'
 import web3 from '../../ethereum/web3'
 
-const ContributeWindow = ({match, minimumContribution, campaign1}) => {
+const ContributeWindow = ({match, minimumContribution, campaign1, cancelContribution}) => {
 
   const [value, setValue] = useState();
 
@@ -35,19 +35,35 @@ const ContributeWindow = ({match, minimumContribution, campaign1}) => {
     })
   }
 
+  const goBack = () => {
+    cancelContribution();
+  }
+
   return (
-    <div>
+    <>
+    <div onClick={goBack} className='backdrop'>
+    </div>
+    <div className='contributing'>
+      <h1>Amount</h1>
       <input
         value={value}
         type='number'
         max='10'
+        placeholder='Amount in ETH'
         min={minimumContribution}
         onChange={e => changeValue(e)}
       ></input>
       <Button
         onClick={e => contributeEth(e)}
-      >Contribute</Button>
+        className="button primary small"
+      >Send Contribution</Button>
+      <Button
+        onClick={goBack}
+        className='button danger small'>
+      Cancel
+      </Button>
     </div>
+    </>
   )
 }
 

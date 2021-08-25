@@ -47,11 +47,16 @@ const CampaignPage = ({match}) => {
     setContributionInput(true);
   }
 
+  const cancelContribution = () => {
+    setContributionInput(false);
+  }
+
   return (
     <div className='campaign-page'>
       {contributionInput &&
         <ContributeWindow minimumContribution={campaignSummary[1]}
         campaign1={campaign1}
+        cancelContribution={cancelContribution}
         />}
 
       <h1>Campaign Address:</h1>

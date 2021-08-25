@@ -1,0 +1,11 @@
+.navbar {
+  position: absolute;
+  bottom: 100px;
+  display: block;
+  justify-content: space-between;
+  text-align: center;
+  z-index: 100;
+  width: 100%;
+  opacity: 0.8;
+  overflow: hidden;
+}

@@ -1,0 +1,24 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.contributing {
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 12px;
+  border: 1px solid black;
+  background: black;
+  box-shadow: 0 1px 12px white;
+  float: center;
+  position: fixed;
+  margin: 3rem 5rem;
+  padding: 3rem;
+  z-index: 1000;
+  overflow: hidden;
+}

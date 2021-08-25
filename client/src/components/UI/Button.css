@@ -17,13 +17,6 @@
 }
 
 .primary {
-  font: inherit;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  border-radius: 12px;
-  transition: all 0.5s ease;
-  border: 1px solid black;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
   background-color: green;
   color: white;
 }
@@ -31,4 +24,19 @@
 .primary:hover {
   background-color: lightgreen;
   color: black;
+}
+
+.danger {
+  background-color: red;
+  color: white;
+}
+
+.danger:hover {
+  background-color: lightpink;
+  color: black;
+}
+
+.small {
+  font-size: 1.5rem;
+  padding: 0.5rem;
 }

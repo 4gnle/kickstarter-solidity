@@ -6,6 +6,7 @@ import './App.css';
 import KickstarterMain from './components/Kickstarter-Main'
 import CampaignPage from './components/Campaign/Campaign-Page'
 import AddRequest from './components/Campaign/AddRequest'
+import Navbar from './components/UI/Navbar'
 
 //Router
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
@@ -16,6 +17,7 @@ function App() {
     <Router>
     <div className="App">
       <div className='App-header'>
+        <Navbar/>
         <Switch>
           <Route exact path='/' component={KickstarterMain}/>
           <Route exact path='/campaign/:camp' component={CampaignPage} />

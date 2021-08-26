@@ -11,10 +11,8 @@
 .spinner {
   display: block;
   text-align: center;
-  top: 25vh;
-  left: 25vw;
   position: fixed;
-  margin: 3rem 5rem;
+  margin: 2rem 12rem;
   padding: 3rem;
   z-index: 100;
   overflow: hidden;

@@ -10,7 +10,7 @@
 
 .contributing {
   text-align: center;
-  width: 30%;
+  width: 50vh;
   box-sizing: border-box;
   border-radius: 12px;
   border: 1px solid black;
@@ -18,8 +18,8 @@
   box-shadow: 0 1px 12px white;
   float: center;
   position: fixed;
-  margin: 5rem;
-  padding: 3rem;
+  margin: 5rem 6rem;
+  padding: 2rem;
   z-index: 1000;
   overflow: hidden;
 }

@@ -59,8 +59,6 @@ const CampaignPage = ({match}) => {
 
   }, [address, campaignSummary, match.params.camp]);
 
-
-
   const addContribution = () => {
     setContributionInput(true);
   }
@@ -73,6 +71,10 @@ const CampaignPage = ({match}) => {
     setSpinner(false);
   }
 
+  const setSpinnerTrue = () => {
+    setSpinner(true)
+  }
+
   return (
     <div className='campaign-page'>
       {contributionInput &&
@@ -80,6 +82,7 @@ const CampaignPage = ({match}) => {
         campaign1={campaign1}
         cancelContribution={cancelContribution}
         setSpinnerFalse={setSpinnerFalse}
+        setSpinnerTrue={setSpinnerTrue}
         />}
 
       {spinner &&

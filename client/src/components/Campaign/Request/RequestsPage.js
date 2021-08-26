@@ -20,14 +20,13 @@ const RequestsPage = ({match}) => {
     }
     getAddress();
     console.log(address);
-
     }
 
     if (address && !campaign1) {
-      const getCampaign1 = async () => {
-        await setCampaign1(campaign(address));
-      }
-      getCampaign1()
+      let getCampaign;
+      getCampaign = campaign(address);
+      setCampaign1(getCampaign);
+
       console.log(campaign1);
     }
   },[address, match.params.address])

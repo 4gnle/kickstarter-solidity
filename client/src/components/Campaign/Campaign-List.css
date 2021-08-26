@@ -10,7 +10,7 @@ h1 {
   margin-top: 10vh;
   background-color: #24292E;
   width: 25%;
-  height: 50%;
+  height: fit-content;
   padding: 10px;
 }
 

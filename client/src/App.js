@@ -22,7 +22,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={KickstarterMain}/>
           <Route exact path='/campaign/:camp' component={CampaignPage} />
-          <Route exact path='/campaign/request/:address' component={AddRequest} />
+          <Route exact path='/campaign/:address/requests/add' component={AddRequest} />
           <Route exact path='/campaign/:address/requests' component={RequestsPage} />
         </Switch>
       </div>

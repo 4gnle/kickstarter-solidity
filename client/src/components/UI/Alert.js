@@ -16,7 +16,7 @@ const Alert = ({alertData, cancelAlert}, props) => {
         className={'button' || props.className}
         onClick={props.onClick}
         disabled={props.disabled}
-        onClick={cancelAlert}
+        cancelAlert={cancelAlert}
       >
         OK
       </Button>

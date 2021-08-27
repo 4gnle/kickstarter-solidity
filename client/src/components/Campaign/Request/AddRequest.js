@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react'
 //CSS and UI
 import './AddRequest.css'
 import Button from '../../UI/Button'
+import Spinner from '../../UI/Spinner';
 
 //ether
 import campaign from '../../../ethereum/campaign'
@@ -19,6 +20,7 @@ const AddRequest = ({match}) => {
   const [requestData, setRequestData] = useState(requestInitial)
   const [address, setAddress] = useState();
   const [campaign1, setCampaign1] = useState();
+  const [spinner, setSpinner] = useState(false);
 
   const {
     description,
@@ -52,15 +54,21 @@ const AddRequest = ({match}) => {
     const account = web3.currentProvider.selectedAddress;
     let changedValue;
     changedValue = web3.utils.toWei(value, 'ether')
+    setSpinner(true);
 
     await campaign1.methods.createRequest(description, changedValue, recipient).send({
       from: account,
       gas: '1000000'
     })
+    
+    setSpinner(false);
   }
 
   return (
     <div className='add-request'>
+
+      {spinner && <Spinner/>}
+
       <h1>Sending request to</h1>
       <h2 style={{fontWeight: 'lighter'}}>{address}</h2>
       <form onSubmit={e => sendRequest(e)}>

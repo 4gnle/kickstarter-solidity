@@ -12,30 +12,46 @@ const RequestsPage = ({match}) => {
 
   const [address, setAddress] = useState();
   const [campaign1, setCampaign1] = useState();
+  const [requests, setRequests] = useState();
 
-  useEffect(() =>{
-    if(match) {
+  useEffect(() => {
+    if (!address) {
       const getAddress = async () => {
       await setAddress(match.params.address);
-    }
-    getAddress();
-    console.log(address);
+      }
+      getAddress();
     }
 
-    if (address && !campaign1) {
-      let getCampaign;
-      getCampaign = campaign(address);
-      setCampaign1(getCampaign);
+    const campaignT = campaign(address);
+    setCampaign1(campaignT);
 
-      console.log(campaign1);
+    if (address && !requests) {
+      const getRequests = async () => {
+        const request = await campaignT.methods.requestsLength().call();
+        await setRequests(request);
+      }
+      getRequests();
     }
-  },[address, match.params.address])
+
+    if(requests) {
+      const breakRequests = async() => {
+        const getRequests = await Promise.all(
+          Array(requests).fill().map((element, index) =>{
+            return campaignT.methods.requests(index).call();
+          })
+        )
+      }
+      console.log(breakRequests);
+    }
+  }, [address, requests, match.params.address]);
+
+
 
   return (
     <div className='requests-page'>
       <h1>Requests</h1>
 
-
+      <Button></Button>
     </div>
   )
 }

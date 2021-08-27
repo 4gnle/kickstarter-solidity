@@ -16,7 +16,7 @@ const CreateCampaign = () => {
   });
   const [spinner, setSpinner] = useState(false);
 
-  const {description, value, address} = campaignData;
+  const {value} = campaignData;
 
   const refreshPage = () => {
      window.location.reload();
@@ -29,16 +29,13 @@ const CreateCampaign = () => {
 
     const currentAccount = await web3.eth.currentProvider.selectedAddress;
 
-    try {
+    if(value) {
       setSpinner(true);
 
       await kickstarter.methods.createCampaign(ethValue).send({from: currentAccount, gas: '1000000'});
 
       refreshPage();
       setSpinner(false);
-
-    } catch(err) {
-
     }
   }
 

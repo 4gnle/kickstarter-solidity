@@ -14,8 +14,9 @@ const Navbar = () => {
   }
 
   return (
-    <div onClick={goBack} className='navbar'>
+    <div className='navbar'>
       <Button
+        onClick={goBack}
         className='button small'
       >{'< Go Back'}</Button>
     </div>

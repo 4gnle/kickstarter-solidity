@@ -38,7 +38,6 @@ const CampaignPage = ({match}) => {
 
     const campaignT = campaign(address);
     setCampaign1(campaignT);
-
     console.log(campaign1);
 
     if (address && !campaignSummary) {

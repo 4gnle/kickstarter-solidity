@@ -88,20 +88,21 @@ const RequestsPage = ({match}) => {
     <div className='requests-page'>
     <h1>Requests</h1>
     <table className='rp-table'>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Description</th>
-            <th>Recipient</th>
-            <th>Value</th>
-            <th>Approvals</th>
-            <th>Completed</th>
-          </tr>
-        </thead>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Recipient</th>
+        <th>Value</th>
+        <th>Approvals</th>
+        <th>Completed</th>
+      </tr>
+      </thead>
       <tbody>
       {requestsData && requestRows()}
       </tbody>
     </table>
+
 
       <Link to={`/campaign/${address}/requests/add`}><Button className='button primary'>Create a Request</Button></Link>
 

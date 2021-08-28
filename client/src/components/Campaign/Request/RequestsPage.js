@@ -71,26 +71,36 @@ const RequestsPage = ({match}) => {
 
   }, [address, requests, requestsData, match.params.address]);
 
+  const requestRows = () => {
+    return requestsData.map((request, index) => {
+      return <RequestTable
+        recipient={request.recipient}
+        description={request.description}
+        value={request.value}
+        approvals={request.approvalCount}
+        complete={request.complete}
+        index={index}
+        key={index}
+        />
+  })};
+
   return (
     <div className='requests-page'>
     <h1>Requests</h1>
     <table className='rp-table'>
-    <tr>
-      <th>ID</th>
-      <th>Description</th>
-      <th>Recipient</th>
-      <th>Value</th>
-      <th>Approvals</th>
-      <th>Completed</th>
-    </tr>
-      {requestsData && requestsData.map((request, index) => {
-        return <RequestTable
-          recipient={request.recipient}
-          description={request.description}
-          value={request.value}
-          approvals={request.approvalCount}
-          complete={request.complete}/>
-      })}
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Recipient</th>
+            <th>Value</th>
+            <th>Approvals</th>
+            <th>Completed</th>
+          </tr>
+        </thead>
+      <tbody>
+      {requestsData && requestRows()}
+      </tbody>
     </table>
 
       <Link to={`/campaign/${address}/requests/add`}><Button className='button primary'>Create a Request</Button></Link>

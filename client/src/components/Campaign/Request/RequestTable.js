@@ -1,8 +1,26 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
 import './RequestTable.css'
 
-const RequestTable = ({index, description, recipient, value, approvals, complete}) => {
+//ether
+import campaign from '../../../ethereum/campaign'
+import web3 from '../../../ethereum/web3'
+
+const RequestTable = ({index, request}) => {
+
+  const [description, setDescription] = useState();
+  const [value, setValue] = useState();
+  const [recipient, setRecipient] = useState();
+  const [complete, setComplete] = useState();
+  const [approvals, setApprovals] = useState();
+
+  useEffect(() => {
+    setDescription(request.description)
+    setValue(web3.utils.fromWei(request.value, 'ether'))
+    setRecipient(request.recipient)
+    setComplete(request.complete)
+    setApprovals(request.approvalCount)
+  })
 
   return (
     <>

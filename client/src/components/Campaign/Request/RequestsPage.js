@@ -22,12 +22,6 @@ const RequestsPage = ({match}) => {
   const [requests, setRequests] = useState();
   const [requestsData, setRequestsData] = useState();
 
-  const [description, setDescription] = useState();
-  const [value, setValue] = useState();
-  const [recipient, setRecipient] = useState();
-  const [complete, setComplete] = useState();
-  const [approvals, setApprovals] = useState();
-
   useEffect(() => {
     if (!address) {
       const getAddress = async () => {
@@ -46,7 +40,7 @@ const RequestsPage = ({match}) => {
       }
       getRequests();
     }
-
+    
     if(requests && !requestsData) {
       const breakRequests = async() => {
         const getRequests = await Promise.all(
@@ -59,26 +53,12 @@ const RequestsPage = ({match}) => {
       breakRequests();
     }
 
-    if(requestsData) {
-      setDescription(requestsData[0].description)
-      setValue(web3.utils.fromWei(requestsData[0].value, 'ether'))
-      setRecipient(requestsData[0].recipient)
-      setComplete(requestsData[0].complete)
-      setApprovals(requestsData[0].approvalCount)
-    }
-
   }, [address, requests, requestsData, match.params.address]);
-
-  console.log(value);
 
   const requestRows = () => {
     return requestsData.map((request, index) => {
       return <RequestTable
-        recipient={request.recipient}
-        description={request.description}
-        value={request.value}
-        approvals={request.approvalCount}
-        complete={request.complete}
+        request={request}
         index={index}
         key={index}
         />

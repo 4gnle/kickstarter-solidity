@@ -53,6 +53,7 @@ const CreateCampaign = () => {
         <br></br>
         <h3>Value</h3>
         <input
+          required
           name='value'
           value={value}
           type='number'

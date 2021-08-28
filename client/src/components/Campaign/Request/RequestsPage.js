@@ -10,6 +10,7 @@ import web3 from '../../../ethereum/web3'
 
 //Components
 import AddRequest from './AddRequest';
+import RequestTable from './RequestTable';
 
 //Router and Redux
 import {Link} from 'react-router-dom';
@@ -73,24 +74,23 @@ const RequestsPage = ({match}) => {
   return (
     <div className='requests-page'>
     <h1>Requests</h1>
-
     <table className='rp-table'>
-      <tr>
-        <th>ID</th>
-        <th>Description</th>
-        <th>Recipient</th>
-        <th>Value</th>
-        <th>Approvals</th>
-        <th>Completed</th>
-      </tr>
-      <tr>
-        <td>0</td>
-        <td>{requestsData && description}</td>
-        <td>{requestsData && recipient}</td>
-        <td>{requestsData && value} ETH</td>
-        <td>{requestsData && approvals}</td>
-        <td>{requestsData && complete === false ? 'No' : 'Yes'}</td>
-      </tr>
+    <tr>
+      <th>ID</th>
+      <th>Description</th>
+      <th>Recipient</th>
+      <th>Value</th>
+      <th>Approvals</th>
+      <th>Completed</th>
+    </tr>
+      {requestsData && requestsData.map((request, index) => {
+        return <RequestTable
+          recipient={request.recipient}
+          description={request.description}
+          value={request.value}
+          approvals={request.approvalCount}
+          complete={request.complete}/>
+      })}
     </table>
 
       <Link to={`/campaign/${address}/requests/add`}><Button className='button primary'>Create a Request</Button></Link>

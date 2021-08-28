@@ -21,13 +21,11 @@ const RequestsPage = ({match}) => {
   const [requests, setRequests] = useState();
   const [requestsData, setRequestsData] = useState();
 
-  const [requestsInfo, setRequestsInfo] = useState({
-    description:'',
-    value:'',
-    recipient:'',
-    complete:'',
-    approvals:''
-  });
+  const [description, setDescription] = useState();
+  const [value, setValue] = useState();
+  const [recipient, setRecipient] = useState();
+  const [complete, setComplete] = useState();
+  const [approvals, setApprovals] = useState();
 
   useEffect(() => {
     if (!address) {
@@ -48,28 +46,55 @@ const RequestsPage = ({match}) => {
       getRequests();
     }
 
+
     if(requests && !requestsData) {
       const breakRequests = async() => {
         const getRequests = await Promise.all(
-          Array(requests).fill().map((element, index) =>{
+          Array(parseInt(requests)).fill().map((element, index) =>{
             return campaignT.methods.requests(index).call();
           })
         )
         setRequestsData(getRequests);
-        console.log(getRequests)
       }
       breakRequests();
     }
 
+    if(requestsData) {
+      setDescription(requestsData[0].description)
+      setValue(web3.utils.fromWei(requestsData[0].value, 'ether'))
+      setRecipient(requestsData[0].recipient)
+      setComplete(requestsData[0].complete)
+      setApprovals(requestsData[0].approvalCount)
+      console.log(requestsData[1])
+    }
 
   }, [address, requests, requestsData, match.params.address]);
 
   return (
     <div className='requests-page'>
-      <h1>Requests</h1>
+    <h1>Requests</h1>
 
+    <table className='rp-table'>
+      <tr>
+        <th>ID</th>
+        <th>Description</th>
+        <th>Recipient</th>
+        <th>Value</th>
+        <th>Approvals</th>
+        <th>Completed</th>
+      </tr>
+      <tr>
+        <td>0</td>
+        <td>{requestsData && description}</td>
+        <td>{requestsData && recipient}</td>
+        <td>{requestsData && value} ETH</td>
+        <td>{requestsData && approvals}</td>
+        <td>{requestsData && complete === false ? 'No' : 'Yes'}</td>
+      </tr>
+    </table>
 
-      <Link to={`/campaign/${address}/requests/add`}><Button></Button></Link>
+      <Link to={`/campaign/${address}/requests/add`}><Button className='button primary'>Create a Request</Button></Link>
+
     </div>
   )
 }

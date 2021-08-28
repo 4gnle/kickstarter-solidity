@@ -4,7 +4,7 @@ import React, {useState, useEffect} from 'react'
 import './AddRequest.css'
 import Button from '../../UI/Button'
 import Spinner from '../../UI/Spinner';
-
+import Alert from '../../UI/Alert'
 //ether
 import campaign from '../../../ethereum/campaign'
 import web3 from '../../../ethereum/web3'
@@ -21,6 +21,11 @@ const AddRequest = ({match}) => {
   const [address, setAddress] = useState();
   const [campaign1, setCampaign1] = useState();
   const [spinner, setSpinner] = useState(false);
+  const [alert, setAlert] = useState();
+  const [alertData, setAlertData] = useState({
+    message: '',
+    header: ''
+  });
 
   const {
     description,
@@ -60,20 +65,26 @@ const AddRequest = ({match}) => {
       from: account,
       gas: '1000000'
     })
-    
+
     setSpinner(false);
+  }
+
+  const cancelAlert = () => {
+    setAlert(false);
   }
 
   return (
     <div className='add-request'>
 
       {spinner && <Spinner/>}
+      {alert && <Alert cancelAlert={cancelAlert} alertData={alertData}/>}
 
       <h1>Sending request to</h1>
       <h2 style={{fontWeight: 'lighter'}}>{address}</h2>
       <form onSubmit={e => sendRequest(e)}>
         <h3>Description</h3>
         <input
+        required
         name='description'
         value={description}
         placeholder='Name of your campaign'
@@ -82,6 +93,7 @@ const AddRequest = ({match}) => {
 
         <h3>Recipient Address</h3>
         <input
+          required
           name='recipient'
           value={recipient}
           placeholder='Paste the address'
@@ -90,6 +102,7 @@ const AddRequest = ({match}) => {
 
         <h3>Value to Request</h3>
         <input
+          required
           name='value'
           value={value}
           type='number'

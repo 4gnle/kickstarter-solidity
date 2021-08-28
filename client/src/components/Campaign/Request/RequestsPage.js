@@ -47,7 +47,6 @@ const RequestsPage = ({match}) => {
       getRequests();
     }
 
-
     if(requests && !requestsData) {
       const breakRequests = async() => {
         const getRequests = await Promise.all(
@@ -66,10 +65,11 @@ const RequestsPage = ({match}) => {
       setRecipient(requestsData[0].recipient)
       setComplete(requestsData[0].complete)
       setApprovals(requestsData[0].approvalCount)
-      console.log(requestsData[1])
     }
 
   }, [address, requests, requestsData, match.params.address]);
+
+  console.log(value);
 
   const requestRows = () => {
     return requestsData.map((request, index) => {
@@ -88,7 +88,7 @@ const RequestsPage = ({match}) => {
     <div className='requests-page'>
     <h1>Requests</h1>
     <table className='rp-table'>
-      <thead>
+    <tbody>
       <tr>
         <th>ID</th>
         <th>Description</th>
@@ -97,8 +97,6 @@ const RequestsPage = ({match}) => {
         <th>Approvals</th>
         <th>Completed</th>
       </tr>
-      </thead>
-      <tbody>
       {requestsData && requestRows()}
       </tbody>
     </table>

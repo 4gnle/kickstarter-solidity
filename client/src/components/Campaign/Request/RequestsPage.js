@@ -40,7 +40,7 @@ const RequestsPage = ({match}) => {
       }
       getRequests();
     }
-    
+
     if(requests && !requestsData) {
       const breakRequests = async() => {
         const getRequests = await Promise.all(
@@ -83,6 +83,9 @@ const RequestsPage = ({match}) => {
 
 
       <Link to={`/campaign/${address}/requests/add`}><Button className='button primary'>Create a Request</Button></Link>
+
+      <Button className='button primary' style={{backgroundColor:
+      'yellow'}}>Approve a Request</Button>
 
     </div>
   )

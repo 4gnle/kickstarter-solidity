@@ -2,7 +2,7 @@
   box-sizing: border-box;
   border-radius: 18px;
   border: 1px solid gray;
-  width: fit-content;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 0px;
@@ -13,8 +13,20 @@
 
 .rp-table {
   border: 1px solid white;
-  width: max-content;
   margin: 1rem;
   border-collapse: collapse;
+}
 
+.requests-page > table,
+td,
+th {
+  margin-right: auto;
+  margin-left: auto;
+  border: 1px solid white;
+  font-size: 1.4vw;
+  padding: 0.5rem;
+  overflow: hidden;
+  text-overflow: clip;
+  word-break: break-all;
+  white-space: pre-wrap;
 }

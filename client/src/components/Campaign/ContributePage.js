@@ -67,12 +67,12 @@ const ContributeWindow = ({match, minimumContribution, campaign1, cancelContribu
   }
 
   const cancelAlert = () => {
-    setAlert(false);
+    setAlert(false)
   }
 
   return (
     <>
-    {alert ? (<Alert className="danger" onClick={cancelAlert} alertData={alertData}/>) : (
+    {alert ? (<Alert className="danger" cancelAlert={cancelAlert} alertData={alertData}/>) : (
       <>
       <div onClick={goBack} className='backdrop'>
       </div>

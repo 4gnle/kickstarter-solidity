@@ -27,6 +27,5 @@ th {
   padding: 0.5rem;
   overflow: hidden;
   text-overflow: clip;
-  word-break: break-all;
   white-space: pre-wrap;
 }

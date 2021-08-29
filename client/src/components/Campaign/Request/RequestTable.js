@@ -32,7 +32,8 @@ const RequestTable = ({index, request}) => {
       <tr>
         <td>{index}</td>
         <td>{description}</td>
-        <td>{recipient}</td>
+        <td style={{  wordBreak: 'break-all'
+}}>{recipient}</td>
         <td>{value} ETH</td>
         <td>{approvals}</td>
         <td>{complete === false ? 'No' : 'Yes'}</td>

@@ -9,10 +9,15 @@
 }
 
 .alert {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  height: fit-content;
+  width: fit-content;
   text-align: center;
-  float: center;
-  position: fixed;
-  margin: 5rem 9rem;
   background-color: black;
   padding: 3rem;
   z-index: 100;

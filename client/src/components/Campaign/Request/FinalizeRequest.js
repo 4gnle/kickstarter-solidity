@@ -12,7 +12,7 @@ import {Link} from 'react-router-dom';
 import campaign from '../../../ethereum/campaign'
 import web3 from '../../../ethereum/web3'
 
-const ApproveRequest = ({match, campaign1, cancelRequest, setSpinnerFalse, setSpinnerTrue}) => {
+const FinalizeRequest = ({match, campaign1, cancelRequest, setSpinnerFalse, setSpinnerTrue}) => {
 
   const [value, setValue] = useState();
   const [alertData, setAlertData] = useState({
@@ -30,7 +30,7 @@ const ApproveRequest = ({match, campaign1, cancelRequest, setSpinnerFalse, setSp
      window.location.reload();
   }
 
-  const sendApproval = async (e) => {
+  const sendFinalization = async (e) => {
     if(!value) {
       setAlertData({message: 'Add an ID', header: 'No ID in Input'})
       setAlert(true);
@@ -39,7 +39,7 @@ const ApproveRequest = ({match, campaign1, cancelRequest, setSpinnerFalse, setSp
       try {
         cancelRequest();
         setSpinnerTrue();
-        await campaign1.methods.approveRequest(value).send({
+        await campaign1.methods.finalizeRequest(value).send({
           from: account,
           gas: '1000000'
         })
@@ -81,7 +81,7 @@ const ApproveRequest = ({match, campaign1, cancelRequest, setSpinnerFalse, setSp
           onChange={e => changeValue(e)}
         ></input>
         <Button
-          onClick={e => sendApproval(e)}
+          onClick={e => sendFinalization(e)}
           className="button primary small"
         >Send</Button>
         <Button
@@ -96,4 +96,4 @@ const ApproveRequest = ({match, campaign1, cancelRequest, setSpinnerFalse, setSp
   )
 }
 
-export default ApproveRequest
+export default FinalizeRequest

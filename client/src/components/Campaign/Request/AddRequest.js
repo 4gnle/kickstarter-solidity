@@ -15,7 +15,7 @@ const requestInitial = {
   recipient: ''
 }
 
-const AddRequest = ({match}) => {
+const AddRequest = ({match, history}) => {
 
   const [requestData, setRequestData] = useState(requestInitial)
   const [address, setAddress] = useState();
@@ -67,10 +67,15 @@ const AddRequest = ({match}) => {
     })
 
     setSpinner(false);
+    goBack();
   }
 
   const cancelAlert = () => {
     setAlert(false);
+  }
+
+  const goBack = () => {
+    history.goBack()
   }
 
   return (

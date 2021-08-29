@@ -2,7 +2,7 @@
   box-sizing: border-box;
   border-radius: 18px;
   border: 1px solid gray;
-  width: 80%;
+  width: fit-content;
   margin-left: auto;
   margin-right: auto;
   margin-top: 0px;
@@ -10,6 +10,7 @@
   background-color: #24292E;
   box-shadow: 0 2px 12px white;
 }
+
 
 .rp-table {
   border: 1px solid white;

@@ -10,10 +10,13 @@
 
 .spinner {
   display: block;
-  text-align: center;
-  position: fixed;
-  margin: 2rem 12rem;
-  padding: 3rem;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  height: fit-content;
+  width: fit-content;
   z-index: 100;
-  overflow: hidden;
 }

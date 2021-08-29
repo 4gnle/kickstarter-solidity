@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 //CSS and UI
 import './RequestsPage.css';
 import Button from '../../UI/Button';
-
+import Spinner from '../../UI/Spinner'
 //ether
 import campaign from '../../../ethereum/campaign'
 import web3 from '../../../ethereum/web3'
@@ -12,6 +12,7 @@ import web3 from '../../../ethereum/web3'
 import AddRequest from './AddRequest';
 import RequestTable from './RequestTable';
 import ApproveRequest from './ApproveRequest'
+import FinalizeRequest from './FinalizeRequest'
 
 //Router and Redux
 import {Link} from 'react-router-dom';
@@ -23,6 +24,8 @@ const RequestsPage = ({match}) => {
   const [requests, setRequests] = useState();
   const [requestsData, setRequestsData] = useState();
   const [approveRequestInput, setApproveRequestInput] = useState(false);
+  const [finalizeRequestInput, setFinalizeRequestInput] = useState(false);
+
   const [spinner, setSpinner] = useState(false);
 
   useEffect(() => {
@@ -71,8 +74,13 @@ const RequestsPage = ({match}) => {
     setApproveRequestInput(true)
   }
 
+  const finalizeWindow = () => {
+    setFinalizeRequestInput(true)
+  }
+
   const cancelRequest = () => {
     setApproveRequestInput(false);
+    setFinalizeRequestInput(false);
   }
 
   const setSpinnerFalse = () => {
@@ -108,12 +116,28 @@ const RequestsPage = ({match}) => {
         setSpinnerTrue={setSpinnerTrue}
         />}
 
-      <Link to={`/campaign/${address}/requests/add`}><Button className='button primary'>Create a Request</Button></Link>
+      {finalizeRequestInput &&
+        <FinalizeRequest
+        campaign1={campaign1}
+        cancelRequest={cancelRequest}
+        setSpinnerFalse={setSpinnerFalse}
+        setSpinnerTrue={setSpinnerTrue}
+        />}
+
+      {spinner &&
+        <Spinner/>}
+
+      <Link to={`/campaign/${address}/requests/add`}><Button className='button'>Create a Request</Button></Link>
 
       <Button
       onClick={requestWindow}
       className='button primary' style={{backgroundColor:
       'yellow'}}>Approve a Request</Button>
+
+      <Button
+      onClick={finalizeWindow}
+      className='button primary' style={{backgroundColor:
+      'yellow'}}>Finalize a Request</Button>
 
     </div>
   )

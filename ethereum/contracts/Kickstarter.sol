@@ -78,8 +78,8 @@ function finalizeRequest(uint index) public managerUser {
   require(request.approvalCount > (approversCount / 2));
   require(!request.complete);
 
-  request.recipient.transfer(request.value);
   request.complete = true;
+  request.recipient.transfer(request.value);
 }
 
 function summary() public view returns(uint, uint, uint, uint, address) {

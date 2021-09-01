@@ -1,6 +1,4 @@
-Kickstarter Project from
-
-Beginner's Course on Ethereum and Solidity by Stephen Grider - https://www.udemy.com/course/ethereum-and-solidity-the-complete-developers-guide
+Kickstarter Project from **Beginner's Course on Ethereum and Solidity** by Stephen Grider - https://www.udemy.com/course/ethereum-and-solidity-the-complete-developers-guide
 
 It's pretty much the same project but adapted to the newest versions of Solidity. 
 

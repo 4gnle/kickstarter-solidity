@@ -61,13 +61,20 @@ const AddRequest = ({match, history}) => {
     changedValue = web3.utils.toWei(value, 'ether')
     setSpinner(true);
 
-    await campaign1.methods.createRequest(description, changedValue, recipient).send({
-      from: account,
-      gas: '1000000'
-    })
+    try {
+      await campaign1.methods.createRequest(description, changedValue, recipient).send({
+        from: account,
+        gas: '1000000'
+      })
 
-    setSpinner(false);
-    goBack();
+      setSpinner(false);
+      goBack();
+    } catch(err) {
+      setSpinner(false);
+      setAlertData({message:`${err.message}`,
+      header: 'Error'});
+      setAlert(true);
+    }
   }
 
   const cancelAlert = () => {

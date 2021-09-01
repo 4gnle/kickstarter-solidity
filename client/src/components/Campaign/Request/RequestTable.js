@@ -1,13 +1,10 @@
 import React, {useState, useEffect} from 'react'
 
-import './RequestTable.css'
-
 //ether
 import campaign from '../../../ethereum/campaign'
 import web3 from '../../../ethereum/web3'
 
 //CSS and UI
-import '../Create-Campaign.css'
 import Button from '../../UI/Button'
 import Spinner from '../../UI/Spinner'
 

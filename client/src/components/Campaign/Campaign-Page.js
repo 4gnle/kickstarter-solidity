@@ -114,7 +114,7 @@ const CampaignPage = ({match}) => {
         </div>
       </div>
 
-      {campaignSummary && requests > 0 ? <Link to={`/campaign/${address}/requests`}><Button>See Requests</Button></Link> : null}
+      {campaignSummary && <Link to={`/campaign/${address}/requests`}><Button>See Requests</Button></Link>}
 
 
       <Button onClick={addContribution} className='button primary'>Contribute</Button>

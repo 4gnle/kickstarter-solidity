@@ -40,13 +40,11 @@ const FinalizeRequest = ({match, campaign1, cancelRequest, setSpinnerFalse, setS
         cancelRequest();
         setSpinnerTrue();
         await campaign1.methods.finalizeRequest(value).send({
-          from: account,
-          gas: '1000000'
+          from: account
         })
 
         setSpinnerFalse();
         refreshPage();
-
       } catch(err) {
 
         setSpinnerFalse();
@@ -54,7 +52,6 @@ const FinalizeRequest = ({match, campaign1, cancelRequest, setSpinnerFalse, setS
         header: 'Error'});
         setAlert(true);
       }
-
     }
   }
 

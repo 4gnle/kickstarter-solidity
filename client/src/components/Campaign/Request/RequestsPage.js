@@ -94,6 +94,8 @@ const RequestsPage = ({match}) => {
   return (
     <div className='requests-page'>
     <h1>Requests</h1>
+    {requests > 0 ?
+  <>
     <table className='rp-table'>
     <tbody>
       <tr>
@@ -107,6 +109,20 @@ const RequestsPage = ({match}) => {
       {requestsData && requestRows()}
       </tbody>
     </table>
+
+    <Button
+    onClick={requestWindow}
+    className='button primary' style={{backgroundColor:
+    'yellow'}}>Approve a Request</Button>
+
+    <Button
+    onClick={finalizeWindow}
+    className='button primary' style={{backgroundColor:
+    'yellow'}}>Finalize a Request</Button>
+  </>
+  : <h2 style={{color: 'red'}}>There are no requests yet</h2>}
+
+    <Link to={`/campaign/${address}/requests/add`}><Button className='button'>Create a Request</Button></Link>
 
       {approveRequestInput &&
         <ApproveRequest
@@ -126,19 +142,6 @@ const RequestsPage = ({match}) => {
 
       {spinner &&
         <Spinner/>}
-
-      <Link to={`/campaign/${address}/requests/add`}><Button className='button'>Create a Request</Button></Link>
-
-      <Button
-      onClick={requestWindow}
-      className='button primary' style={{backgroundColor:
-      'yellow'}}>Approve a Request</Button>
-
-      <Button
-      onClick={finalizeWindow}
-      className='button primary' style={{backgroundColor:
-      'yellow'}}>Finalize a Request</Button>
-
     </div>
   )
 }

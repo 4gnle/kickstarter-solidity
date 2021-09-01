@@ -75,7 +75,7 @@ function approveRequest(uint256 index) public {
 function finalizeRequest(uint index) public managerUser {
   Request storage request = requests[index];
 
-  require(request.approvalCount > (approversCount / 2));
+  require(request.approvalCount >= (approversCount / 2));
   require(!request.complete);
 
   request.complete = true;

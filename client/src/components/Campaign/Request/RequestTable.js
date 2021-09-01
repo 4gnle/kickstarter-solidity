@@ -26,7 +26,7 @@ const RequestTable = ({index, request}) => {
 
   return (
     <>
-      <tr>
+      <tr style={request.complete ? {backgroundColor:'#7E7E7E'} : null }>
         <td>{index}</td>
         <td>{description}</td>
         <td style={{  wordBreak: 'break-all'
